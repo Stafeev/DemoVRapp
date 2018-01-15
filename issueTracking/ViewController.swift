@@ -13,6 +13,8 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    let globalPanRecognizer : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,
+                                                                              action:#selector(dragObject(sender:)))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +26,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene(named: "art.scnassets/issueScene.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
+        self.sceneView.addGestureRecognizer(globalPanRecognizer)
+    }
+    
+    @objc func dragObject(sender: UIPanGestureRecognizer){
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
